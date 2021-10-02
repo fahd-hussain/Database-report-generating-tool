@@ -46,7 +46,6 @@ export class AuthService {
           HttpStatus.UNAUTHORIZED,
         );
       }
-
       throw error;
     }
   };

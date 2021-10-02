@@ -9,4 +9,8 @@ export class UserRepository extends Repository<UserEntity> {
       { relations: ['authentication'] },
     );
   };
+
+  getUserById = async ({ id }): Promise<any> => {
+    return await this.findOneOrFail({ id });
+  };
 }

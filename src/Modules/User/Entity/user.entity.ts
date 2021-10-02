@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -11,6 +12,7 @@ import {
 import { sign } from 'jsonwebtoken';
 import { env } from 'process';
 import { AuthEntity } from 'src/Modules/Auth/Entity/auth.entity';
+import { DatabaseEntity } from 'src/Modules/Database/Entity/database.entity';
 
 @Entity('user')
 export class UserEntity extends BaseEntity {
@@ -25,6 +27,10 @@ export class UserEntity extends BaseEntity {
   @OneToOne(() => AuthEntity, { cascade: true })
   @JoinColumn()
   authentication: AuthEntity;
+
+  @OneToMany(() => DatabaseEntity, (de) => de.user)
+  @JoinColumn()
+  databases: DatabaseEntity[];
 
   @Column({
     type: 'boolean',
