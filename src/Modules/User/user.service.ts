@@ -22,4 +22,22 @@ export class UserService {
       throw error;
     }
   }
+
+  async getUserById({ id }: { id: string }) {
+    try {
+      const users = await this.userRepository.find();
+
+      if (!users) {
+        return 'users not found';
+      }
+
+      const response = Promise.all(
+        users.map((user) => user.toResponseObject(false)),
+      );
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
