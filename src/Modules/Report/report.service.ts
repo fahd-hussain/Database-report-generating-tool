@@ -4,7 +4,7 @@ import { DatabaseRepository } from 'src/Modules/Database/Repository/database.rep
 
 @Injectable()
 export class ReportService {
-  constructor(private readonly databaseRepository: DatabaseRepository) { }
+  constructor(private readonly databaseRepository: DatabaseRepository) {}
 
   async checkDatabase(database_id: string, request) {
     const { id: user_Id } = request.user || {};
