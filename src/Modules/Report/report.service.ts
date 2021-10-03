@@ -25,8 +25,32 @@ export class ReportService {
       `;
     const tables: Array<any> = await newConnection.query(query);
 
+    let name = tables[0].TABLE_NAME;
+    let newObj: Object = {};
+
+    tables.map((item) => {
+      if (item.TABLE_NAME !== name) {
+        return (name = item.TABLE_NAME);
+      }
+
+      if (!newObj[name]) {
+        return (newObj[name] = {
+          TABLE_NAME: item.TABLE_NAME,
+          TABLE_SCHEMA: item.TABLE_SCHEMA,
+          COLUMNS: [
+            { COLUMN_NAME: item.COLUMN_NAME, COLUMN_KEY: item.COLUMN_KEY },
+          ],
+        });
+      }
+
+      newObj[name].COLUMNS.push({
+        COLUMN_NAME: item.COLUMN_NAME,
+        COLUMN_KEY: item.COLUMN_KEY,
+      });
+    });
+
     newConnection.close();
-    return tables;
+    return newObj;
   }
 
   async getRelations(database_id: string, request) {
