@@ -6,7 +6,7 @@ import { UserModule } from 'src/Modules/User/user.module';
 import { HttpErrorFilter } from 'src/Shared/Filter/http-error.filter';
 import { DatabaseModule } from 'src/Modules/Database/database.module';
 import { AuthGuard } from 'src/Shared/Guard/auth.guard';
-import { ReportModule } from './Modules/Report/report.module';
+import { ReportModule } from 'src/Modules/Report/report.module';
 
 @Module({
   imports: [
