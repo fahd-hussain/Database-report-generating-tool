@@ -33,7 +33,7 @@ export class DatabaseService {
     }
   }
 
-  async getDatabase(id, request) {
+  async getDatabase(id: string, request) {
     try {
       const { id: user_Id } = request.user || {};
 

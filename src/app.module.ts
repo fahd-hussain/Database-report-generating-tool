@@ -6,9 +6,16 @@ import { UserModule } from 'src/Modules/User/user.module';
 import { HttpErrorFilter } from 'src/Shared/Filter/http-error.filter';
 import { DatabaseModule } from 'src/Modules/Database/database.module';
 import { AuthGuard } from 'src/Shared/Guard/auth.guard';
+import { ReportModule } from './Modules/Report/report.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), AuthModule, UserModule, DatabaseModule],
+  imports: [
+    TypeOrmModule.forRoot(),
+    AuthModule,
+    UserModule,
+    DatabaseModule,
+    ReportModule,
+  ],
   providers: [
     {
       provide: APP_FILTER,
