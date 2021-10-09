@@ -60,7 +60,7 @@ export class ReportService {
     });
 
     newConnection.close();
-    return newObj;
+    return Object.values(newObj)
   }
 
   async getRelations(database_id: string, request) {
