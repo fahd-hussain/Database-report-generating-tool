@@ -6,7 +6,7 @@ import { AppModule } from 'src/app.module';
 const PORT = env.PORT || 4000;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
 
   const config = new DocumentBuilder()
     .setTitle('Database Report Generating Tool V1')
