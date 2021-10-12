@@ -1,9 +1,15 @@
-import { Controller, Get, Param, Request } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Request } from '@nestjs/common';
+import { GenerteReportDTO } from './DTO/generateReport.dto';
 import { ReportService } from './report.service';
 
 @Controller('report')
 export class ReportController {
-  constructor(private readonly reportService: ReportService) {}
+  constructor(private readonly reportService: ReportService) { }
+
+  @Post(':id')
+  async generateReport(@Param('id') database_id: string, @Body() body: GenerteReportDTO, @Request() request) {
+    return await this.reportService.generateReport(database_id, body, request);
+  }
 
   @Get(':id')
   async checkDatabase(@Param('id') database_id: string, @Request() request) {
